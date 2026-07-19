@@ -1,0 +1,16 @@
+{
+  "name": "@flowtest/runner-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@flowtest/assertion-kit": "workspace:*",
+    "@flowtest/config-schema": "workspace:*",
+    "@flowtest/page-agent-adapter": "workspace:*",
+    "@flowtest/playwright-adapter": "workspace:*",
+    "@flowtest/reporters": "workspace:*",
+    "playwright": "^1.61.1"
+  }
+}

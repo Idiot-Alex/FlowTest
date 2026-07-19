@@ -1,0 +1,93 @@
+apiVersion: flowtest.ai/v1
+kind: TestCase
+
+metadata:
+  id: local-order-happy-path
+  name: 创建本地示例订单
+  tags: [smoke, local, order]
+  owner: flowtest-team
+
+environment:
+  baseUrl: ${BASE_URL}
+  allowedHosts:
+    - 127.0.0.1
+
+browser:
+  engine: chromium
+  headless: true
+  locale: zh-CN
+  viewport:
+    width: 1440
+    height: 900
+  timeoutMs: 15000
+
+variables:
+  customerName: 自动化客户-${RUN_ID}
+  productName: 标准套餐
+  quantity: 2
+
+safety:
+  environmentAllowlist: [test]
+  blockedSelectors:
+    - '[data-action="real-payment"]'
+    - '[data-action="permanent-delete"]'
+  maxAgentStepsPerStage: 8
+  maxModelCallsPerCase: 12
+
+stages:
+  - id: create-order
+    url: ${BASE_URL}/orders/new
+    actions:
+      - type: fill
+        locator: '[data-testid="customer-name"]'
+        value: ${customerName}
+      - type: select
+        locator: '[data-testid="product-name"]'
+        value: ${productName}
+      - type: fill
+        locator: '[data-testid="quantity"]'
+        value: ${quantity}
+      - type: click
+        locator: '[data-testid="submit-order"]'
+    assertions:
+      - type: url
+        matches: /orders/[0-9a-z-]+$
+      - type: visible
+        locator: '[data-testid="order-status"]'
+      - type: text
+        locator: '[data-testid="order-status"]'
+        equals: 待审批
+      - type: export
+        name: orderId
+        from: url
+        pattern: /orders/([^/?]+)
+      - type: http
+        request:
+          method: GET
+          url: ${BASE_URL}/api/orders/${orderId}
+        expect:
+          status: 200
+          json:
+            $.data.status: PENDING
+            $.data.quantity: ${quantity}
+
+cleanup:
+  always: true
+  actions:
+    - id: remove-order
+      type: http
+      request:
+        method: DELETE
+        url: ${BASE_URL}/api/orders/${orderId}
+
+artifacts:
+  screenshot: on-failure
+  video: off
+  trace: retain-on-failure
+  console: true
+  network: failures-only
+
+retry:
+  caseRetries: 0
+  stageRetries: 0
+  retryOn: []

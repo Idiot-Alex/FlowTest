@@ -1,0 +1,12 @@
+{
+  "name": "@flowtest/assertion-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@flowtest/config-schema": "workspace:*",
+    "playwright": "^1.61.1"
+  }
+}

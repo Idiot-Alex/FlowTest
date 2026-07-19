@@ -1,0 +1,10 @@
+{
+  "name": "@flowtest/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@flowtest/config-schema": "workspace:*",
+    "@flowtest/runner-core": "workspace:*"
+  }
+}

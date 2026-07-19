@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts"],
+  "references": [
+    { "path": "../assertion-kit" },
+    { "path": "../config-schema" },
+    { "path": "../page-agent-adapter" },
+    { "path": "../playwright-adapter" },
+    { "path": "../reporters" }
+  ]
+}

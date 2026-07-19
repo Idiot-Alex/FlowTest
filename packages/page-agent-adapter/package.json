@@ -1,0 +1,12 @@
+{
+  "name": "@flowtest/page-agent-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "page-agent": "^1.12.2",
+    "playwright": "^1.61.1"
+  }
+}

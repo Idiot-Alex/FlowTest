@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/config-schema" },
+    { "path": "packages/assertion-kit" },
+    { "path": "packages/playwright-adapter" },
+    { "path": "packages/page-agent-adapter" },
+    { "path": "packages/reporters" },
+    { "path": "packages/runner-core" },
+    { "path": "apps/cli" }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@flowtest/assertion-kit": ["packages/assertion-kit/src/index.ts"],
+      "@flowtest/config-schema": ["packages/config-schema/src/index.ts"],
+      "@flowtest/page-agent-adapter": [
+        "packages/page-agent-adapter/src/index.ts"
+      ],
+      "@flowtest/playwright-adapter": [
+        "packages/playwright-adapter/src/index.ts"
+      ],
+      "@flowtest/reporters": ["packages/reporters/src/index.ts"],
+      "@flowtest/runner-core": ["packages/runner-core/src/index.ts"]
+    }
+  }
+}
